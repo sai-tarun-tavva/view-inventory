@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, ReactNode, useEffect } from "react";
-import { sample } from "../Content/sample";
+import { sample, updateSampleData } from "../Content/sample";
 
 // Define the shape of a single item
 export interface MenuItem {
@@ -69,7 +69,16 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   useEffect(() => {
+    // Initialize the state with the sample data
     handleLocalDataUpdate(sample.data);
+
+    // Set an interval to update the sample data every 5 seconds
+    const interval = setInterval(() => {
+      updateSampleData(); // Update the sample data
+      handleLocalDataUpdate(sample.data); // Dispatch the updated sample data to context
+    }, 500); // 5000 ms = 5 seconds
+
+    return () => clearInterval(interval); // Clear interval on component unmount
   }, []);
 
   return (

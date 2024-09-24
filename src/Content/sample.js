@@ -82,3 +82,20 @@ export const sample = {
     },
   ],
 };
+
+export function updateSampleData() {
+  sample.data.forEach((item) => {
+    if (item.orderCount >= item.stock) {
+      item.orderCount = item.stock;
+    } else {
+      const randomOrderCount = Math.floor(Math.random() * 5); // Random order count between 0 and 4
+      item.orderCount += randomOrderCount;
+      item.remainStock = item.stock - item.orderCount;
+
+      // Ensure remainStock does not go below 0
+      if (item.remainStock < 0) {
+        item.remainStock = 0;
+      }
+    }
+  });
+}

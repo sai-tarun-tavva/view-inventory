@@ -12,9 +12,7 @@ export interface MenuItem {
 }
 
 // Define the shape of context state
-export interface LocalDataState {
-  data: MenuItem[];
-}
+export type LocalDataState = MenuItem[];
 
 // Define action types
 export interface Action {
@@ -23,7 +21,7 @@ export interface Action {
 }
 
 // Initial state
-const initialLocalData: LocalDataState = { data: [] };
+const initialLocalData: LocalDataState = [];
 
 // Create context
 export const DataContext = createContext<
@@ -42,7 +40,7 @@ const localDataReducer = (
   switch (action.type) {
     case "update":
       // Update the local data state with new data from the payload
-      return { ...state, data: action.payload.data };
+      return [...action.payload];
     default:
       return state; // Return current state for unrecognized action types
   }
@@ -71,7 +69,7 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   useEffect(() => {
-    handleLocalDataUpdate(sample);
+    handleLocalDataUpdate(sample.data);
   }, []);
 
   return (

@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ id }): JSX.Element => {
   const { data } = context; // Destructure data from context
 
   // Find the specific item by id
-  const menuItem = data.data.find((item: MenuItem) => item.id === id);
+  const menuItem = data.find((item: MenuItem) => item.id === id);
 
   // If no item is found, return empty component
   if (!menuItem) {

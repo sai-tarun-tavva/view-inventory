@@ -2,6 +2,7 @@ import React from "react";
 import Cards from "./Components/Cards";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DataContextProvider } from "./Store/DataContextProvider";
+import { handleFullScreen } from "./utilities";
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -16,7 +17,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <DataContextProvider>
-        <main className="App">
+        <main onDoubleClick={handleFullScreen} className="App">
           <Cards />
         </main>
       </DataContextProvider>

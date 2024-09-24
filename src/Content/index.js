@@ -3,4 +3,5 @@ export const CONTENT = {
   orders: "Orders Received",
   leftStock: "Remaining",
   stock_levels: ["Good Stock", "Medium Stock", "Low Stock!"],
+  request_failure: "No data available",
 };

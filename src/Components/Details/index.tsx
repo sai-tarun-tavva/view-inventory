@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./index.module.css";
 
 interface DetailsProps {
@@ -10,7 +10,7 @@ const Details: React.FC<DetailsProps> = ({ name, img }): JSX.Element => {
   return (
     <div className={styles.details}>
       <span>{name}</span>
-      <img src={img}></img>
+      <img src={img} alt={`${name}`}></img>
     </div>
   );
 };

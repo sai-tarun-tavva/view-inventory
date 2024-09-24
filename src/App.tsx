@@ -1,7 +1,10 @@
 import React from "react";
 import Cards from "./Components/Cards";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DataContextProvider } from "./Store/DataContextProvider";
 import "./App.css";
+
+const queryClient = new QueryClient();
 
 /**
  * Main application component that wraps the application in the DataContextProvider.
@@ -11,11 +14,13 @@ import "./App.css";
  */
 const App: React.FC = (): JSX.Element => {
   return (
-    <DataContextProvider>
-      <main className="App">
-        <Cards />
-      </main>
-    </DataContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <DataContextProvider>
+        <main className="App">
+          <Cards />
+        </main>
+      </DataContextProvider>
+    </QueryClientProvider>
   );
 };
 

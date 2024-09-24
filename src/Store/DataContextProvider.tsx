@@ -1,4 +1,5 @@
-import React, { createContext, useReducer, ReactNode, useEffect } from "react";
+import React, { createContext, ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { sample } from "../Content/sample";
 
 // Define the shape of a single item
@@ -12,67 +13,42 @@ export interface MenuItem {
 }
 
 // Define the shape of context state
-export interface LocalDataState {
-  data: MenuItem[];
-}
-
-// Define action types
-export interface Action {
-  type: string;
-  payload?: any;
-}
-
-// Initial state
-const initialLocalData: LocalDataState = { data: [] };
+export type LocalDataState = MenuItem[];
 
 // Create context
 export const DataContext = createContext<
   | {
       data: LocalDataState;
-      updateData: (updateData: LocalDataState) => void;
     }
   | undefined
 >(undefined);
 
-// Define the reducer function to manage state updates
-const localDataReducer = (
-  state: LocalDataState,
-  action: Action
-): LocalDataState => {
-  switch (action.type) {
-    case "update":
-      // Update the local data state with new data from the payload
-      return { ...state, data: action.payload.data };
-    default:
-      return state; // Return current state for unrecognized action types
+// Fetch function
+const fetchMenuItems = async (): Promise<MenuItem[]> => {
+  const response = await fetch("https://api.example.com/data");
+
+  if (!response.ok) {
+    throw new Error("Unable to fetch data.");
   }
+
+  const result = await response.json();
+  return result.data; // Extracting the `data` array from API response
 };
 
 // Create provider component to wrap around the application
 const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [localData, localDataDispatch] = useReducer(
-    localDataReducer,
-    initialLocalData
-  );
-
-  /**
-   * Dispatch updated data to the reducer.
-   * @param {LocalDataState} updatedData - The updated data to set in the context state.
-   */
-  const handleLocalDataUpdate = (updatedData: LocalDataState) => {
-    localDataDispatch({ type: "update", payload: updatedData });
-  };
+  const { data } = useQuery({
+    queryKey: ["menuItems"],
+    queryFn: fetchMenuItems,
+    initialData: sample.data, // Optional: provide initial sample data
+    refetchInterval: 10000, // Refetch every 10 seconds
+  });
 
   const dataCtx = {
-    data: localData,
-    updateData: handleLocalDataUpdate,
+    data,
   };
-
-  useEffect(() => {
-    handleLocalDataUpdate(sample);
-  }, []);
 
   return (
     <DataContext.Provider value={dataCtx}>{children}</DataContext.Provider>

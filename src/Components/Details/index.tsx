@@ -20,7 +20,7 @@ interface DetailsProps {
 const Details: React.FC<DetailsProps> = ({ name, img }): JSX.Element => {
   return (
     <div className={styles.details}>
-      <span>{name}</span>
+      <h2>{name}</h2>
       <img src={img} alt={`${name}`} />
     </div>
   );

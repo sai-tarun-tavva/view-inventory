@@ -1,5 +1,11 @@
+/* Base Styles */
+html {
+  font-size: 8px; /* Default for small screens (less than 640px) */
+}
+
 body {
   margin: 0;
+  background-color: rgb(240, 240, 240);
   font-family: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -10,4 +16,47 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Responsive Font Sizes */
+@media (min-width: 640px) {
+  html {
+    font-size: 10px; /* For screens 640px and up */
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 12px; /* For screens 768px and up (tablets) */
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 14px; /* For screens 1024px and up (small laptops) */
+  }
+}
+
+@media (min-width: 1366px) {
+  html {
+    font-size: 16px; /* For screens 1366px and up (large laptops) */
+  }
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 20px; /* For screens 1920px and up (full HD TVs) */
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 24px; /* For screens 2560px and up (2K displays) */
+  }
+}
+
+@media (min-width: 3840px) {
+  html {
+    font-size: 45px; /* For screens 3840px and up (4K displays) */
+  }
 }

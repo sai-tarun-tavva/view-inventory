@@ -2,25 +2,24 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 11px;
-  justify-content: end;
+  margin-top: 0.7rem;
+  height: 4.5rem;
 }
 
 .status-column {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .status-column span:first-child {
-  font-size: 1.6em;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #333;
-  margin: 5px 0 0;
+  color: rgb(51, 51, 51);
 }
 
 .status-column span:last-child {
-  font-size: 0.85em;
-  color: #666;
-  margin: 0 0 5px;
+  font-size: 0.85rem;
+  color: rgb(102, 102, 102);
 }

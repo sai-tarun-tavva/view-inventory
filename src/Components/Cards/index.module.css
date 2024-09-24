@@ -1,28 +1,23 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 1200px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  gap: 2vw;
+  padding: 2vw;
+  margin: 2vh auto;
+  max-width: 85vw;
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 1600px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
+/* Responsive Design */
+@media (max-width: 1200px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .cards {
     grid-template-columns: 1fr;
   }

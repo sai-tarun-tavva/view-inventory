@@ -3,16 +3,16 @@
   flex-direction: column;
   align-items: center;
 }
-.details span {
+.details h2 {
   font-size: 1.3em;
   font-weight: bold;
-  color: #444;
-  margin-bottom: 11px;
+  color: rgb(69, 69, 69);
+  margin-bottom: 0.7rem;
   text-align: center;
 }
 
 .details img {
-  width: 60px;
+  width: 3.75rem;
   aspect-ratio: auto 60 / 60;
-  height: 60px;
+  height: 3.75rem;
 }

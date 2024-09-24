@@ -1,13 +1,15 @@
 import React from "react";
 import Cards from "./Components/Cards";
-
+import { DataContextProvider } from "./Store/DataContextProvider";
 import "./App.css";
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <div className="App">
-      <Cards />
-    </div>
+    <DataContextProvider>
+      <main className="App">
+        <Cards />
+      </main>
+    </DataContextProvider>
   );
 };
 

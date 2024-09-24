@@ -1,8 +1,18 @@
-// import React from "react";
-// import styles from "./index.module.css";
+import React, { useContext } from "react";
+import styles from "./index.module.css";
 
-const Details: React.FC = (): JSX.Element => {
-  return <></>;
+interface DetailsProps {
+  name: string;
+  img: string;
+}
+
+const Details: React.FC<DetailsProps> = ({ name, img }): JSX.Element => {
+  return (
+    <div className={styles.details}>
+      <span>{name}</span>
+      <img src={img}></img>
+    </div>
+  );
 };
 
 Details.displayName = "Details";

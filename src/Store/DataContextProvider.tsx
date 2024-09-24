@@ -19,14 +19,14 @@ export interface LocalDataState {
 // Define action types
 export interface Action {
   type: string;
-  payload?: any; // Change 'any' to a more specific type if needed
+  payload?: any;
 }
 
 // Initial state
 const initialLocalData: LocalDataState = { data: [] };
 
 // Create context
-const DataContext = createContext<
+export const DataContext = createContext<
   | {
       data: LocalDataState;
       updateData: (updateData: LocalDataState) => void;
@@ -34,21 +34,21 @@ const DataContext = createContext<
   | undefined
 >(undefined);
 
-// Define the reducer
+// Define the reducer function to manage state updates
 const localDataReducer = (
   state: LocalDataState,
   action: Action
 ): LocalDataState => {
   switch (action.type) {
     case "update":
-      // Implement your update logic here
-      return { ...state, ...action.payload }; // Return the updated state
+      // Update the local data state with new data from the payload
+      return { ...state, data: action.payload.data };
     default:
-      return state;
+      return state; // Return current state for unrecognized action types
   }
 };
 
-// Create provider component
+// Create provider component to wrap around the application
 const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -57,6 +57,10 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
     initialLocalData
   );
 
+  /**
+   * Dispatch updated data to the reducer.
+   * @param {LocalDataState} updatedData - The updated data to set in the context state.
+   */
   const handleLocalDataUpdate = (updatedData: LocalDataState) => {
     localDataDispatch({ type: "update", payload: updatedData });
   };
@@ -75,4 +79,4 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-export { DataContext, DataContextProvider };
+export { DataContextProvider };

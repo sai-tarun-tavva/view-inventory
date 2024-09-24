@@ -1,20 +1,32 @@
 import React, { useContext } from "react";
-import Bar from "../Bar";
 import Details from "../Details";
 import Status from "../Status";
+import Bar from "../Bar";
 import { DataContext, MenuItem } from "../../Store/DataContextProvider";
 import styles from "./index.module.css";
 
+// Define the prop types for the Card component
 interface CardProps {
-  id: number;
+  id: number; // Unique identifier for the menu item
 }
 
+/**
+ * Card component that displays details about a specific menu item.
+ * It retrieves data from the DataContext, finds the corresponding
+ * menu item by its ID, and renders its details, status, and a bar
+ * component for stock visualization.
+ *
+ * @param {CardProps} props - The props for the Card component.
+ * @param props.id - The identifier of the item.
+ * @returns {JSX.Element} - The rendered Card component.
+ */
 const Card: React.FC<CardProps> = ({ id }): JSX.Element => {
   const context = useContext(DataContext);
   if (!context) {
-    return <></>;
+    return <></>; // Return an empty fragment if context is not available
   }
-  const { data } = context;
+
+  const { data } = context; // Destructure data from context
 
   // Find the specific item by id
   const menuItem = data.data.find((item: MenuItem) => item.id === id);
@@ -28,13 +40,15 @@ const Card: React.FC<CardProps> = ({ id }): JSX.Element => {
 
   return (
     <article className={styles.card}>
-      <Details name={name} img={icon} />
+      <Details name={name} img={icon} /> {/* Render details of the menu item */}
       <Status
         initialCount={stock}
         ordersReceived={orderCount}
         remainStock={remainStock}
       />
+      {/* Render status for stock and order counts */}
       <Bar initialCount={stock} remainStock={remainStock} />
+      {/* Render bar for stock visualization */}
     </article>
   );
 };

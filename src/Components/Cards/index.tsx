@@ -12,7 +12,7 @@ const Cards: React.FC = (): JSX.Element => {
   const { data } = context;
 
   return (
-    <section className={styles.cardsContainer}>
+    <section className={styles.cards}>
       {data.data.map((item: MenuItem) => (
         <Card key={item.id} id={item.id} />
       ))}

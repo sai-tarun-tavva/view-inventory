@@ -1,6 +1,7 @@
 import React from "react";
 import Cards from "./Components/Cards";
 import { DataContextProvider } from "./Store/DataContextProvider";
+import { handleFullScreen } from "./utilities";
 import "./App.css";
 
 /**
@@ -12,7 +13,7 @@ import "./App.css";
 const App: React.FC = (): JSX.Element => {
   return (
     <DataContextProvider>
-      <main className="App">
+      <main onDoubleClick={handleFullScreen} className="App">
         <Cards />
       </main>
     </DataContextProvider>

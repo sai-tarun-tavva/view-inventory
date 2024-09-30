@@ -27,7 +27,15 @@ export const DataContext = createContext<
 // Fetch function
 const fetchMenuItems = async (): Promise<MenuItem[]> => {
   const response = await fetch(
-    "https://85f79533-a5a4-4bc2-a193-1373ace33857.mock.pstmn.io/"
+    "https://85f79533-a5a4-4bc2-a193-1373ace33857.mock.pstmn.io/",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "bc-id": "your-business-channel-id", // Replace with your actual bc-id
+        "device-id": "your-device-id", // Replace with your actual device-id logic
+      },
+    }
   );
 
   if (!response.ok) {

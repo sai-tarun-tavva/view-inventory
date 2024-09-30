@@ -18,12 +18,14 @@ const Cards: React.FC = (): JSX.Element => {
   }
   const { data } = context; // Destructure data from context
 
-  return (
+  return data.length > 0 ? (
     <section className={styles.cards}>
       {data.map((item: MenuItem) => (
         <Card key={item.id} id={item.id} /> // Render Card for each menu item
       ))}
     </section>
+  ) : (
+    <p>Could not fetch items.</p>
   );
 };
 

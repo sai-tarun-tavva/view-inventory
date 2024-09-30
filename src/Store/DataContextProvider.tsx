@@ -1,6 +1,5 @@
 import React, { createContext, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { sample } from "../Content/sample";
 
 // Define the shape of a single item
 export interface MenuItem {
@@ -25,10 +24,12 @@ export const DataContext = createContext<
 
 // Fetch function
 const fetchMenuItems = async (): Promise<MenuItem[]> => {
-  const response = await fetch("https://api.example.com/data");
+  const response = await fetch(
+    "https://85f79533-a5a4-4bc2-a193-1373ace33857.mock.pstmn.io/"
+  );
 
   if (!response.ok) {
-    throw new Error("Unable to fetch data.");
+    throw new Error("Could not fetch items.");
   }
 
   const result = await response.json();
@@ -42,7 +43,7 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   const { data } = useQuery({
     queryKey: ["menuItems"],
     queryFn: fetchMenuItems,
-    initialData: sample.data, // Optional: provide initial sample data
+    initialData: [],
     refetchInterval: 10000, // Refetch every 10 seconds
   });
 

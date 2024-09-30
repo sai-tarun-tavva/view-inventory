@@ -18,6 +18,7 @@ export type LocalDataState = MenuItem[];
 export const DataContext = createContext<
   | {
       data: LocalDataState;
+      isLoading: Boolean;
     }
   | undefined
 >(undefined);
@@ -40,7 +41,7 @@ const fetchMenuItems = async (): Promise<MenuItem[]> => {
 const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["menuItems"],
     queryFn: fetchMenuItems,
     initialData: [],
@@ -49,6 +50,7 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const dataCtx = {
     data,
+    isLoading: isFetching,
   };
 
   return (

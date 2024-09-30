@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Card from "../Card";
+import Loader from "../Loader";
 import { DataContext, MenuItem } from "../../Store/DataContextProvider";
 import { CONTENT } from "../../Content";
 import styles from "./index.module.css";
@@ -16,7 +17,11 @@ const Cards: React.FC = (): JSX.Element => {
   if (!context) {
     return <div>{CONTENT.request_failure}</div>; // Display error message if context is not available
   }
-  const { data } = context; // Destructure data from context
+  const { data, isLoading } = context; // Destructure data from context
+
+  if (isLoading && data.length === 0) {
+    return <Loader />;
+  }
 
   return data.length > 0 ? (
     <section className={styles.cards}>
@@ -25,7 +30,7 @@ const Cards: React.FC = (): JSX.Element => {
       ))}
     </section>
   ) : (
-    <p>Could not fetch items.</p>
+    <p>{CONTENT.request_failure}</p>
   );
 };
 

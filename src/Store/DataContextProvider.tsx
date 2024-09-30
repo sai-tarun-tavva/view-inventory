@@ -32,8 +32,8 @@ const fetchMenuItems = async (): Promise<MenuItem[]> => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "bc-id": "your-business-channel-id", // Replace with your actual bc-id
-        "device-id": "your-device-id", // Replace with your actual device-id logic
+        "bc-id": "392c8817-af7f-4e3e-aa18-639a63415051", // Replace with your actual bc-id
+        "device-id": "155037a4-1f9d-4e91-aa73-e12ee13aff90", // Replace with your actual device-id logic
       },
     }
   );

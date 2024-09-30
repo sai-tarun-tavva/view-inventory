@@ -21,7 +21,7 @@ const Cards: React.FC = (): JSX.Element => {
   return data.length > 0 ? (
     <section className={styles.cards}>
       {data.map((item: MenuItem) => (
-        <Card key={item.id} id={item.id} /> // Render Card for each menu item
+        <Card key={item.id} menuItem={item} /> // Render Card for each menu item
       ))}
     </section>
   ) : (

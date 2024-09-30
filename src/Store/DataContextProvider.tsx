@@ -19,6 +19,7 @@ export const DataContext = createContext<
   | {
       data: LocalDataState;
       isLoading: Boolean;
+      error: String | null;
     }
   | undefined
 >(undefined);
@@ -41,7 +42,7 @@ const fetchMenuItems = async (): Promise<MenuItem[]> => {
 const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { data, isFetching } = useQuery({
+  const { data, isFetching, error } = useQuery({
     queryKey: ["menuItems"],
     queryFn: fetchMenuItems,
     initialData: [],
@@ -51,6 +52,7 @@ const DataContextProvider: React.FC<{ children: ReactNode }> = ({
   const dataCtx = {
     data,
     isLoading: isFetching,
+    error: error ? error.message : null,
   };
 
   return (

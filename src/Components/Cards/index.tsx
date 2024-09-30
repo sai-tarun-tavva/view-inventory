@@ -17,10 +17,14 @@ const Cards: React.FC = (): JSX.Element => {
   if (!context) {
     return <div>{CONTENT.request_failure}</div>; // Display error message if context is not available
   }
-  const { data, isLoading } = context; // Destructure data from context
+  const { data, isLoading, error } = context; // Destructure data from context
 
   if (isLoading && data.length === 0) {
     return <Loader />;
+  }
+
+  if (error && data.length === 0) {
+    return <p>Error: {error}</p>;
   }
 
   return data.length > 0 ? (
